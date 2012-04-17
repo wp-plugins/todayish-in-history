@@ -28,18 +28,26 @@ widget for use in your sidebar.
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 If you want to use the widget:
+
 1. Place the Todayish In History in a sidebar using the WordPress Widgets tool in the Appearence menu
 2. Change the settings if desired
 
-If you want to use Todayish In History in your theme
-1. Place `<?php todayish_in_history(); ?>` in your template
-2. You can optionally set the following parameter
-    * parameter (default,type) -- Description
-    * limit (100,int) -- How many years of history to show
-    * title (Todayish In History,string) -- The title displayed next to the dropdown
-    * class (horizontal,css legal string) -- The class added to the outermost div for styling purposes
-    * width (200px,valid css width) -- How wide should the dropdown be. 
-    * iswidget (FALSE,boolean) -- If TRUE adds class 'widgettitle' to h2 widget title 
+If you want to use Todayish In History in your theme:
+
+1. Place 
+
+    `<?php todayish_in_history(); ?>` 
+
+    in your template
+
+2. You can optionally set the following parameters
+
+	* parameter (default,type) -- Description
+	* limit (100,int) -- How many years of history to show
+	* title (Todayish In History,string) -- The title displayed next to the dropdown
+	* class (horizontal,css legal string) -- The class added to the outermost div for styling purposes
+	* width (200px,valid css width) -- How wide should the dropdown be. 
+	* iswidget (FALSE,boolean) -- If TRUE adds class 'widgettitle' to h2 widget title 
 
 By default the dropdown drops directly down, and titles too wide for the
 drop-down are truncated. To change this behavior so that the dropped-down list
