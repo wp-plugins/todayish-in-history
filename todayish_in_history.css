@@ -1,0 +1,44 @@
+/* Today in history */
+
+#todayinhistory.horizontal{
+    margin: 10px 0 0 0;
+    padding: 0px; 
+    padding-bottom: 20px; 
+}
+
+#todayinhistory.horizontal #historylabel.notwidgettitle{
+    display: inline;
+    font-size: 1.1em;
+}
+
+#todayinhistory.horizontal ul {
+    display: inline;
+    position: absolute;    
+    z-index: 10000000000000;
+    overflow: hidden;
+    border: 1px inset black;
+    background: white url('more_arrow.png') top left no-repeat;
+    height: 19px;
+    padding: 0px;
+    margin: 0px 10px;
+    list-style-type: none;
+    white-space:nowrap;
+}
+
+#todayinhistory.horizontal ul:hover {
+    background:white;
+    height: auto;
+
+    /*
+    Uncomment width, and comment out overflow-y to make the full link text appear
+    width: auto;
+     */
+    overflow-y:visible;
+}
+
+#todayinhistory.horizontal li {
+    padding: 2px 20px;
+}
+
+
+
