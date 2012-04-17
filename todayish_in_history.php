@@ -41,7 +41,7 @@ wp_enqueue_style('todayish_in_history',plugins_url('todayish_in_history.css',__F
  * 'iswidget' If you set parameters when not used as a widget, you should also pass FALSE to iswidget
  */
 function todayish_in_history($instance = FALSE){
-    global $wpdb,$options;
+    global $wpdb,$options,$table_prefix;
 
     $settings = Array(
 	'limit' => 100,
@@ -70,7 +70,7 @@ function todayish_in_history($instance = FALSE){
 	YEAR(`post_date`) AS `year`,
 	ABS(DAYOFYEAR(NOW()) - DAYOFYEAR(`post_date`)) AS `days_off`
 	FROM 
-	`wp_posts` 
+	`{$table_prefix}posts` 
 	WHERE 
 	`post_status`='publish' AND 
 	`post_type` <> 'attachment' AND 
