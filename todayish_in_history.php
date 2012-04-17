@@ -3,7 +3,7 @@
  * Plugin Name: Todayish In History
  * Plugin URI: http://stuporglue.org/todayish-in-history
  * Description: Show links to the post made nearest to today from each previous year
- * Version: 0.1
+ * Version: 0.1.1
  * Author: Michael Moore <stuporglue@gmail.com>
  * Author URI: http://stuporglue.org
  * License: GPL2
@@ -39,9 +39,11 @@ wp_enqueue_style('todayish_in_history',plugins_url('todayish_in_history.css',__F
  * 'class' is a class added to the outermost <div> for styling purposes. In the widget UI it is presented as direction and sets either 'vertical' or 'horizontal' as the values
  * 'width' is how wide to make it
  * 'iswidget' If you set parameters when not used as a widget, you should also pass FALSE to iswidget
+ *
+ * @param $args (optional) Widget args. Populated by WordPress when called as a widget.
  */
-function todayish_in_history($instance = FALSE){
-    global $wpdb,$options,$table_prefix;
+function todayish_in_history($instance = FALSE,$args = FALSE){
+    global $wpdb,$options,$table_prefix,$before_title,$after_title;
 
     $settings = Array(
 	'limit' => 100,
@@ -50,6 +52,10 @@ function todayish_in_history($instance = FALSE){
 	'width' => '200px',
 	'iswidget' => FALSE,
     );
+
+    if($args){
+	extract($args);
+    }
 
     if(is_array($instance)){ // if is_array, then in widget mode
 	if(!array_key_exists('iswidget',$instance)){
@@ -85,7 +91,13 @@ function todayish_in_history($instance = FALSE){
 
     $r = $wpdb->get_results($q, OBJECT);
 
-    print "<div id='todayinhistory' class='{$settings['class']}'><h2 id='historylabel' class='".($instance['iswidget'] ? 'widgettitle' : 'notwidgettitle')."'>{$settings['title']}</h2><ul style='width:{$settings['width']};'>";
+    if($settings['iswidget']){
+	$title = $before_title . apply_filters('widget_title', $settings['title']) . $after_title;
+    }else{
+	$title = "<h2 id='historylabel' class='notwidgettitle'>{$settings['title']}</h2>";
+    }
+
+    print "<div id='todayinhistory' class='{$settings['class']}'>$title<ul style='width:{$settings['width']};'>";
 
     // check if we got some posts
     if ( $r ) {
@@ -180,7 +192,7 @@ class todayish_widget extends WP_Widget {
     }
 
     public function widget( $args, $instance ) {
-	todayish_in_history($instance);
+	todayish_in_history($instance,$args);
     }
 }
 

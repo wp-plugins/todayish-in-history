@@ -71,10 +71,17 @@ hunting, fishing, sports, etc. may also find this sort of thing useful.
 
 == Changelog ==
 
+= 0.1.1 = 
+Fix to use sidebar's title size instead of hard coded h2. Added !important to
+commented out CSS that enabled full text links to appear. 
+
 = 0.1 =
 * Welcome to Todayish In History
 
 == Upgrade Notice ==
+
+= 0.1.1 = 
+Fixed to use sidebar's title size instead of hard coded h2. 
 
 = 0.1 = 
 Welcome to Todayish In History. Thanks for installing!

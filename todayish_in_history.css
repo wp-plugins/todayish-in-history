@@ -1,6 +1,6 @@
 /* Today in history */
 
-#todayinhistory.horizontal{
+#todayinhistory {
     margin: 10px 0 0 0;
     padding: 0px; 
     padding-bottom: 20px; 
@@ -31,8 +31,8 @@
 
     /*
     Uncomment width, and comment out overflow-y to make the full link text appear
-    width: auto;
-     */
+    width: auto !important;
+    */
     overflow-y:visible;
 }
 
