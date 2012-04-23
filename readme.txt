@@ -3,7 +3,7 @@ Contributors: stuporglue
 Donate link: https://www.dwolla.com/hub/stuporglue
 Tags: history, widget,theme
 Requires at least: 3.0
-Tested up to: 3.3.1
+Tested up to: 3.3.2
 Stable tag: trunk
 
 Shows a list of links to posts from previous years on or near this date, 1 per year. Provides a function to use in a theme, as well as a widget
@@ -48,6 +48,10 @@ If you want to use Todayish In History in your theme:
 	* class (horizontal,css legal string) -- The class added to the outermost div for styling purposes
 	* width (200px,valid css width) -- How wide should the dropdown be. 
 	* iswidget (FALSE,boolean) -- If TRUE adds class 'widgettitle' to h2 widget title 
+	* 'max_days_off' (int/365) The max number of days away from today's date to search
+	* 'range' (bool/FALSE) Use the fixed range_start/range_stop fields?
+	* 'range_start' (int/0) Start year in fixed range
+	* 'range_stop (int/date('Y')) Stop year in fixed range
 
 By default the dropdown drops directly down, and titles too wide for the
 drop-down are truncated. To change this behavior so that the dropped-down list
@@ -71,6 +75,11 @@ hunting, fishing, sports, etc. may also find this sort of thing useful.
 
 == Changelog ==
 
+= 0.2 =
+Added option to use fixed date range. Added option to limit proximity to
+current date -- eg. Only show posts from previous years within 30 days of
+today. 
+
 = 0.1.1 = 
 Fix to use sidebar's title size instead of hard coded h2. Added !important to
 commented out CSS that enabled full text links to appear. 
@@ -79,6 +88,10 @@ commented out CSS that enabled full text links to appear.
 * Welcome to Todayish In History
 
 == Upgrade Notice ==
+
+= 0.2 =
+New options to use fixed date range (eg. 2001-2005) and to limit to posts
+withing x days of today.
 
 = 0.1.1 = 
 Fixed to use sidebar's title size instead of hard coded h2. 
