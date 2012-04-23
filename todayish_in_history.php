@@ -51,6 +51,7 @@ function todayish_in_history($instance = FALSE,$args = FALSE){
 	'class' => 'horizontal',
 	'width' => '200px',
 	'iswidget' => FALSE,
+	'max_days_off' => 365,
     );
 
     if($args){
@@ -81,9 +82,11 @@ function todayish_in_history($instance = FALSE,$args = FALSE){
 	`post_status`='publish' AND 
 	`post_type` <> 'attachment' AND 
 	`post_type` <> 'revision' AND 
-	`post_type` <> 'page'
+	`post_type` <> 'page' 
 	ORDER BY `days_off`
     ) AS `goodposts`
+    WHERE
+	`days_off` < {$settings['max_days_off']}
     GROUP BY `year`
     ORDER BY `year`  DESC
     LIMIT {$settings['limit']}
@@ -158,6 +161,9 @@ class todayish_widget extends WP_Widget {
 	$instance['class'] = $new_instance['class'];
 	$instance['width'] = strip_tags( $new_instance['width'] );
 
+	$max_days_off = (int)strip_tags($new_instance['max_days_off']);
+	$instance['max_days_off'] = ($max_days_off > 0 ? $max_days_off : 365);
+
 	return $instance;
     }
 
@@ -166,6 +172,7 @@ class todayish_widget extends WP_Widget {
 	$limit = (isset($instance['limit']) ? $instance['limit'] : __(100,'text_domain'));
 	$class = (isset($instance['class']) ? $instance['class'] : 'vertical');
 	$width = (isset($instance['width']) ? $instance['width'] : __('200px','text_domain'));
+	$max_days_off = (isset($instance['max_days_off']) ? $instance['max_days_off'] : __(365,'text_domain'));
 
 ?>
 	<p>
@@ -173,8 +180,12 @@ class todayish_widget extends WP_Widget {
 	<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 	</p>
 	<p>
-	<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Number of Years:' ); ?></label> 
+	<label for="<?php echo $this->get_field_id( 'max_days_off' ); ?>"><?php _e( 'Number of Years:' ); ?></label> 
 	<input class="widefat" id="<?php echo $this->get_field_id( 'limit' ); ?>" name="<?php echo $this->get_field_name( 'limit' ); ?>" type="text" value="<?php echo esc_attr( $limit); ?>" />
+	</p>
+	<p>
+	<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Maximum days away from today\'s date:' ); ?></label> 
+	<input class="widefat" id="<?php echo $this->get_field_id( 'max_days_off' ); ?>" name="<?php echo $this->get_field_name( 'max_days_off' ); ?>" type="text" value="<?php echo esc_attr( $max_days_off); ?>" />
 	</p>
 	<p>
 	<label><?php _e('Display Direction')?></label><br/>

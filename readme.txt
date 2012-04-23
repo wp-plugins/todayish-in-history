@@ -67,7 +67,7 @@ hunting, fishing, sports, etc. may also find this sort of thing useful.
 2. Todayish expanded in a theme.
 3. Todaysih widget in vertical mode.
 4. Todayish widget in horzontal mode.
-5.  Todayish widget options.
+5. Todayish widget options.
 
 == Changelog ==
 
